@@ -5,6 +5,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Importacao\NcmClassificacaoController;
 use App\Http\Controllers\Importacao\ClassificacaoTributariaController;
 use App\Http\Controllers\Consulta\NcmController as NcmConsultaController;
+use App\Http\Controllers\Consulta\IaController as IaConsultaController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -17,6 +18,8 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::prefix('consulta')->name('consulta.')->middleware('auth')->group(function () {
     Route::get('/ncm',    [NcmConsultaController::class, 'index'])->name('ncm.index');
     Route::post('/ncm',   [NcmConsultaController::class, 'buscar'])->name('ncm.buscar');
+    Route::get('/ia',     [IaConsultaController::class, 'index'])->name('ia.index');
+    Route::post('/ia',    [IaConsultaController::class, 'consultar'])->name('ia.consultar');
 });
 
 Route::prefix('importacao')->name('importacao.')->middleware('auth')->group(function () {
